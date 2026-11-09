@@ -54,7 +54,7 @@ namespace WebApplicationApi.Repository
             if (categoryId <= 0) {
                 return new List<Product>();
             }
-            return _db.Products.Where(p => p.CategoryId == categoryId).OrderBy(p => p.Name).ToList();
+            return _db.Products.Include(p => p.Category).Where(p => p.CategoryId == categoryId).OrderBy(p => p.Name).ToList();
         }
         public bool ProductExist(int id) {
             if (id <= 0)
